@@ -17,12 +17,46 @@ export function generateFretboard(tuning: Tuning) {
     fretboard.push(generateChromaticScale(note));
   }
 
+  for (const idx in fretboard) {
+    fretboard[idx] = getMinorScale("B", fretboard[idx]);
+  }
+
   return fretboard;
 }
 
-function generateChromaticScale(note: Note) {
+function generateChromaticScale(note: Note): Array<Note> {
   const noteEnum = noteStrings.indexOf(note) as NoteEnum;
   return Array.from({ length: 12 }, (_, i) => noteStrings[(noteEnum + i) % 12]);
+}
+
+function getMajorScale(rootNote: string, chromaticScale: Array<Note>) {
+  const majorScaleIntervals = [2, 2, 1, 2, 2, 2, 1];
+  const rootIdx = noteStrings.indexOf(rootNote);
+
+  const majorScale: Array<Note> = [];
+  let currentIdx = rootIdx;
+
+  for (const interval of majorScaleIntervals) {
+    majorScale.push(noteStrings[currentIdx % 12]);
+    currentIdx += interval;
+  }
+
+  return chromaticScale.map((note) => (majorScale.includes(note) ? note : ""));
+}
+
+function getMinorScale(rootNote: string, chromaticScale: Array<Note>) {
+  const majorScaleIntervals = [2, 1, 2, 2, 1, 2, 2];
+  const rootIdx = noteStrings.indexOf(rootNote);
+
+  const majorScale: Array<Note> = [];
+  let currentIdx = rootIdx;
+
+  for (const interval of majorScaleIntervals) {
+    majorScale.push(noteStrings[currentIdx % 12]);
+    currentIdx += interval;
+  }
+
+  return chromaticScale.map((note) => (majorScale.includes(note) ? note : ""));
 }
 
 main();
