@@ -8,7 +8,7 @@ export function Fretboard() {
       {strings.map((string, strIdx) => (
         <div style={{ display: "flex", justifyContent: "space-evenly" }} key={strIdx}>
           {string.map((note, noteIdx) => (
-            <Fret key={noteIdx} note={note} />
+            <Fret style={{ borderLeft: noteIdx === 0 ? "none" : "1px solid white" }} key={noteIdx} note={note} />
           ))}
         </div>
       ))

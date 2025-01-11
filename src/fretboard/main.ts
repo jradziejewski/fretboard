@@ -18,7 +18,7 @@ export function generateFretboard(tuning: Tuning) {
   }
 
   for (const idx in fretboard) {
-    fretboard[idx] = getMinorScale("B", fretboard[idx]);
+    fretboard[idx] = getMinorScale("C", fretboard[idx]);
   }
 
   return fretboard;
