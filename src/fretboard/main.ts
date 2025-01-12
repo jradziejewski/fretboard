@@ -2,15 +2,11 @@ import { Note, Tuning, NoteEnum, noteStrings } from "./types.ts";
 
 export const standardTuning: Tuning = ["E", "A", "D", "G", "B", "E"];
 
-function main() {
-  const fretboard = generateFretboard(standardTuning);
-
-  for (const frets of fretboard) {
-    console.log(frets.join(" "));
-  }
-}
-
-export function generateFretboard(tuning: Tuning) {
+export function generateFretboard(
+  tuning: Tuning,
+  rootNote: Note,
+  scale?: "minor" | "major",
+) {
   const fretboard: Array<Array<Note>> = [];
   tuning.reverse();
   for (const note of tuning) {
@@ -18,7 +14,11 @@ export function generateFretboard(tuning: Tuning) {
   }
 
   for (const idx in fretboard) {
-    fretboard[idx] = getMinorScale("C", fretboard[idx]);
+    if (scale == "minor") {
+      fretboard[idx] = getMinorScale(rootNote, fretboard[idx]);
+    } else if (scale == "major") {
+      fretboard[idx] = getMajorScale(rootNote, fretboard[idx]);
+    }
   }
 
   return fretboard;
@@ -58,5 +58,3 @@ function getMinorScale(rootNote: string, chromaticScale: Array<Note>) {
 
   return chromaticScale.map((note) => (majorScale.includes(note) ? note : ""));
 }
-
-main();
