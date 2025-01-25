@@ -39,6 +39,7 @@ export type Scale = Array<Note>;
 export type ScaleIntervals = Array<number>;
 
 export type ScaleName =
+  | "chromatic"
   | "major"
   | "minor"
   | "harmonic minor"

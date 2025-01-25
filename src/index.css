@@ -104,3 +104,25 @@ body {
   /* Adjust text size */
   transform: translate(-50%, -50%);
 }
+
+.notes-buttons {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.notes-buttons button {
+  background-color: lightgrey;
+  color: black;
+  width: 30px;
+}
+
+.active-button {
+  background-color: lightcoral !important;
+}
+
+.scales-buttons {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}

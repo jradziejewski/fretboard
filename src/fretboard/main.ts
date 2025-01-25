@@ -9,21 +9,20 @@ import {
 } from "./types.ts";
 
 export const standardTuning: Tuning = ["E", "A", "D", "G", "B", "E"];
-export const tuning: Tuning = ["E", "B", "G", "D", "A", "E"];
 
 export function generateFretboard(
   tuning: Tuning,
   rootNote: Note,
   scale?: ScaleName,
 ) {
+  const reversedTuning = tuning.slice().reverse();
   const fretboard: Array<Array<Note>> = [];
-  for (const note of tuning) {
+  for (const note of reversedTuning) {
     fretboard.push(generateChromaticScale(note));
   }
 
   for (const idx in fretboard) {
     if (scale) {
-      console.log("Scale: " + scale);
       fretboard[idx] = getScale(rootNote, fretboard[idx], scale);
     }
   }
