@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Fret } from "./Fret.tsx"
 import { generateFretboard, standardTuning } from "./fretboard/main.ts";
-import { noteStrings } from "./fretboard/types.ts";
+import { noteStrings, ScaleName } from "./fretboard/types.ts";
 
 export function Fretboard() {
   const [rootNote, setRootNote] = useState("C");
@@ -9,6 +9,10 @@ export function Fretboard() {
 
   const handleNoteChange = (event: any) => {
     setRootNote(event.target.value);
+  }
+
+  const handleStringsChange = (event: any) => {
+    setStrings(generateFretboard(standardTuning, rootNote, event.target.value))
   }
 
   return (
@@ -25,9 +29,11 @@ export function Fretboard() {
         <select value={rootNote} onChange={handleNoteChange} >
           {noteStrings.map((note) => <option key={note} value={note}>{note}</option>)}
         </select>
-        <button onClick={() => setStrings(generateFretboard(standardTuning, rootNote, "minor"))}>Minor</button>
-        <button onClick={() => setStrings(generateFretboard(standardTuning, rootNote, "major"))}>Major</button>
-        <button onClick={() => setStrings(generateFretboard(standardTuning, rootNote))}>Chromatic</button>
+        <button onClick={handleStringsChange} value="minor">Minor</button>
+        <button onClick={handleStringsChange} value="major">Major</button>
+        <button onClick={handleStringsChange} value="harmonic minor">Harmonic Minor</button>
+        <button onClick={handleStringsChange} value="melodic minor">Melodic Minor</button>
+        <button onClick={handleStringsChange}>Chromatic</button>
       </div>
     </div >
   )

@@ -33,3 +33,18 @@ export enum NoteEnum {
   "G" = 10,
   "G#" = 11,
 }
+
+export type Scale = Array<Note>;
+
+export type ScaleIntervals = Array<number>;
+
+export type ScaleName =
+  | "major"
+  | "minor"
+  | "harmonic minor"
+  | "melodic minor"
+  | "dorian"
+  | "phrygian"
+  | "lydian"
+  | "mixolydian"
+  | "locrian";
