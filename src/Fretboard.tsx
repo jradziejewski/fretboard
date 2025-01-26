@@ -24,9 +24,13 @@ export function Fretboard() {
       <h1>{rootNote} {activeScale}</h1>
       <div className="fretboard">
         {strings.map((string, strIdx) => (
-          <div style={{ display: "flex", justifyContent: "space-evenly" }} key={strIdx}>
+          <div style={{ display: "flex" }} key={strIdx}>
             {string.map((note, noteIdx) => (
-              <Fret style={{ borderLeft: noteIdx === 0 ? "none" : "1px solid white" }} key={noteIdx} note={note} />
+              <Fret
+                style={{ borderLeft: noteIdx === 0 ? "none" : "1px solid white" }}
+                className={rootNote === note ? "rootnote" : ""}
+                key={noteIdx}
+                note={note} />
             ))}
           </div>
         ))

@@ -30,7 +30,8 @@ body {
 .fret {
   border-left: 1px solid white;
   border-right: 1px solid white;
-  width: 75px;
+  width: 5vw;
+  max-width: 75px;
   height: 50px;
   position: relative;
 }
@@ -66,14 +67,6 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.fret {
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  width: 75px;
-  height: 50px;
-  position: relative;
-}
-
 .fret::before {
   content: "";
   position: absolute;
@@ -93,7 +86,7 @@ body {
   /* Diameter of the circle */
   height: 30px;
   /* Diameter of the circle */
-  background-color: red;
+  background-color: gray;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -103,6 +96,10 @@ body {
   font-size: 14px;
   /* Adjust text size */
   transform: translate(-50%, -50%);
+}
+
+.rootnote {
+  background-color: red;
 }
 
 .notes-buttons {
