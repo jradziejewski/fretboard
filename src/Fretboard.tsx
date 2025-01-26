@@ -22,6 +22,11 @@ export function Fretboard() {
   return (
     <div>
       <h1>{rootNote} {activeScale}</h1>
+      <div className="fretboard-indexes">
+        {strings[0].map((_, noteIdx) => (
+          <span>{noteIdx}</span>
+        ))}
+      </div>
       <div className="fretboard">
         {strings.map((string, strIdx) => (
           <div style={{ display: "flex" }} key={strIdx}>
