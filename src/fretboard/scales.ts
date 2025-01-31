@@ -1,10 +1,11 @@
-import { ScaleIntervals, ScaleName } from "./types";
+import { ScaleIntervals, ScaleName, ScaleType } from "./types";
 
 export const scalesIntervals: Record<
-  "common" | "rare" | "exotic",
+  ScaleType,
   {
-    diatonic: Partial<Record<ScaleName, ScaleIntervals>>;
-    pentatonic: Partial<Record<ScaleName, ScaleIntervals>>;
+    diatonic?: Partial<Record<ScaleName, ScaleIntervals>>;
+    pentatonic?: Partial<Record<ScaleName, ScaleIntervals>>;
+    other?: Partial<Record<ScaleName, ScaleIntervals>>;
   }
 > = {
   common: {
@@ -33,6 +34,9 @@ export const scalesIntervals: Record<
     pentatonic: {
       hirajoshi: [2, 1, 4, 1, 4],
       "yo scale": [2, 3, 2, 2, 3],
+    },
+    other: {
+      chromatic: [],
     },
   },
   exotic: {

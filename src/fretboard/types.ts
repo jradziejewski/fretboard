@@ -38,6 +38,8 @@ export type Scale = Array<Note>;
 
 export type ScaleIntervals = Array<number>;
 
+export type ScaleType = "common" | "rare" | "exotic";
+
 export type DiatonicScale =
   | "major"
   | "minor"
