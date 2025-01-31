@@ -18,84 +18,175 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
+/* Fretboard Styles */
 .fretboard {
   display: grid;
+  height: 240px;
   grid-template-rows: repeat(6, 1fr);
+  /* 6 strings */
+  position: relative;
+  width: 90vw;
+  /* Spacing between strings */
+  background-color: black;
+  /* Fallback background */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Wood texture background */
+.fretboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50px;
+  right: 0;
+  bottom: 0;
+  background-image: url("assets/preview16.jpg");
+  background-size: cover;
+  opacity: 0.8;
+  border-radius: 10px;
+}
+
+/* Fret Styles */
 .fret {
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  width: 5vw;
-  max-width: 75px;
+  width: 100%;
   height: 40px;
   position: relative;
 }
 
+/* Fret text (note) */
 .fret-text {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 30px;
-  /* Diameter of the circle */
   height: 30px;
-  /* Diameter of the circle */
-  background-color: red;
+  border: 1px solid black;
+  background-color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
-  /* Text color */
   font-size: 14px;
-  /* Adjust text size */
   transform: translate(-50%, -50%);
+  z-index: 2;
+  /* Ensure text is above strings and frets */
 }
 
+/* Horizontal string (using ::before) */
 .fret::before {
   content: "";
   position: absolute;
   top: 50%;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: white;
+  height: 4px;
+  background-color: gray;
   transform: translateY(-50%);
+  z-index: 1;
+  /* Ensure strings are above the fretboard */
 }
 
+/* Vertical fret (using ::after) */
+.fret::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background-color: black;
+  z-index: 2;
+  /* Ensure frets are above the strings */
+}
+
+/* Remove the right border for the last fret */
+.fret:last-child::after {
+  display: none;
+}
+
+/* Root note styling */
 .rootnote {
   background-color: red;
+  color: white;
+  font-weight: 700;
 }
 
-.notes-buttons {
-  margin-top: 16px;
+/* Fret markers container */
+.fret-markers {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  /* Ensure markers don't interfere with clicks */
+}
+
+/* Individual fret marker */
+.fret-marker {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: 25.5px;
+  /* Ensure markers are above strings and frets */
+}
+
+.fret-marker-double {
+  position: absolute;
+  top: 50%;
+  /* Adjusted for two dots */
+  height: 100px;
+  /* Increased height for vertical alignment */
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 25.5px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
-.notes-buttons button {
-  background-color: lightgrey;
-  color: black;
-  width: 30px;
+.fret-marker-double::before,
+.fret-marker-double::after {
+  content: "";
+  width: 20px;
+  /* Dot size */
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
 }
 
-.active-button {
-  background-color: lightcoral !important;
-}
 
+/* Notes and Scales Buttons */
+.notes-buttons,
 .scales-buttons {
   margin-top: 16px;
   display: flex;
   gap: 10px;
 }
 
+.notes-buttons button,
+.scales-buttons button {
+  background-color: lightgrey;
+  color: black;
+  height: 20px;
+  min-width: 30px;
+}
+
+.active-button {
+  background-color: lightcoral !important;
+}
+
+/* Fretboard Indexes */
 .fretboard-indexes {
   display: flex;
   justify-content: space-evenly;
-  gap: 30px;
   font-size: 20px;
 }

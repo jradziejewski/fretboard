@@ -8,7 +8,7 @@ import {
 } from "./types.ts";
 import { findScaleIntervals } from "./utils.ts";
 
-const SCALE_LENGTH = 12;
+const SCALE_LENGTH = 23;
 
 export const standardTuning: Tuning = ["E", "A", "D", "G", "B", "E"];
 
@@ -16,6 +16,7 @@ export function generateFretboard(
   tuning: Tuning,
   rootNote: Note,
   scale?: ScaleName,
+  maxFrets: number = 23,
 ) {
   /*
    Function that generates fretboard with given scale. First, it populates 2d array with chromatic scales.
@@ -37,7 +38,10 @@ export function generateFretboard(
 
   for (const idx in fretboard) {
     if (scale) {
-      fretboard[idx] = getScale(rootNote, fretboard[idx], scale);
+      fretboard[idx] = getScale(rootNote, fretboard[idx], scale).slice(
+        0,
+        maxFrets,
+      );
     }
   }
 
@@ -48,15 +52,25 @@ function generateChromaticScale(note: Note): Scale {
   /*
    Helper function for (generateFretboard). Generates chromatic scale.
       Input:
-        - <Note> - root note from wich chromatic scale should be generated.
+        - <Note> - root note from which chromatic scale should be generated.
       Output:
         - <Scale> - an array of <Note>s representing chromatic scale.
    */
   const noteEnum = noteStrings.indexOf(note) as NoteEnum;
-  return Array.from(
-    { length: SCALE_LENGTH },
-    (_, i) => noteStrings[(noteEnum + i) % SCALE_LENGTH],
+  const chromaticScale = Array.from(
+    { length: 12 },
+    (_, i) => noteStrings[(noteEnum + i) % 12],
   );
+
+  // Calculate how many times the chromatic scale needs to be repeated
+  const repetitions = Math.ceil(SCALE_LENGTH / 12);
+  const repeatedScale = Array.from(
+    { length: repetitions },
+    () => chromaticScale,
+  ).flat();
+
+  // Slice the repeated scale to match the exact SCALE_LENGTH
+  return repeatedScale.slice(0, SCALE_LENGTH);
 }
 
 function getScale(
