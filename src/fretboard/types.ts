@@ -38,8 +38,7 @@ export type Scale = Array<Note>;
 
 export type ScaleIntervals = Array<number>;
 
-export type ScaleName =
-  | "chromatic"
+export type DiatonicScale =
   | "major"
   | "minor"
   | "harmonic minor"
@@ -48,4 +47,22 @@ export type ScaleName =
   | "phrygian"
   | "lydian"
   | "mixolydian"
-  | "locrian";
+  | "locrian"
+  | "double harmonic"
+  | "neapolitan minor"
+  | "neapolitan major"
+  | "byzantine"
+  | "persian"
+  | "hungarian minor"
+  | "flamenco";
+
+export type PentatonicScale =
+  | "major pentatonic"
+  | "minor pentatonic"
+  | "hirajoshi"
+  | "yo scale"
+  | "pelog"
+  | "kumoi"
+  | "egyptian";
+
+export type ScaleName = DiatonicScale | PentatonicScale | "chromatic";

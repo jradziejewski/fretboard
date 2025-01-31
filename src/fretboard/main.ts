@@ -7,6 +7,7 @@ import {
   Scale,
   ScaleName,
 } from "./types.ts";
+import { findScaleIntervals } from "./utils.ts";
 
 export const standardTuning: Tuning = ["E", "A", "D", "G", "B", "E"];
 
@@ -40,7 +41,11 @@ export function getScale(
   chromaticScale: Scale,
   scaleName: ScaleName,
 ) {
-  const scaleIntervals = scalesIntervals[scaleName];
+  const scaleIntervals = findScaleIntervals(scaleName);
+  if (!scaleIntervals) {
+    return chromaticScale.map((note) => (scale.includes(note) ? note : ""));
+  }
+
   const rootIdx = noteStrings.indexOf(rootNote);
 
   const scale: Array<Note> = [];
