@@ -25,7 +25,7 @@ export function FretboardOptions(props: FretboardOptionsProps) {
         {/* 🔹 Select Scale Type (Common, Rare, Exotic) */}
         <h3>Select Scale</h3>
         <div className="scale-type-buttons">
-          {["common", "rare", "exotic", "chromatic"].map((type) => (
+          {["common", "rare", "exotic"].map((type) => (
             <button
               key={type}
               onClick={() => setScaleType(type as "common" | "rare" | "exotic")}

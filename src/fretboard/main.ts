@@ -59,7 +59,7 @@ function generateChromaticScale(note: Note): Scale {
   );
 }
 
-export function getScale(
+function getScale(
   rootNote: string,
   chromaticScale: Scale,
   scaleName: ScaleName,
