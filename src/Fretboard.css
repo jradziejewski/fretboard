@@ -1,0 +1,84 @@
+/* Fretboard Styles */
+.fretboard {
+  display: grid;
+  height: 240px;
+  grid-template-rows: repeat(6, 1fr);
+  /* 6 strings */
+  position: relative;
+  width: 90vw;
+  /* Spacing between strings */
+  background-color: black;
+  /* Fallback background */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Wood texture background */
+.fretboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50px;
+  right: 0;
+  bottom: 0;
+  background-image: url("assets/preview16.jpg");
+  background-size: cover;
+  opacity: 0.8;
+  border-radius: 10px;
+}
+
+
+/* Fret markers container */
+.fret-markers {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  /* Ensure markers don't interfere with clicks */
+}
+
+/* Individual fret marker */
+.fret-marker {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: 25.5px;
+  /* Ensure markers are above strings and frets */
+}
+
+.fret-marker-double {
+  position: absolute;
+  top: 50%;
+  /* Adjusted for two dots */
+  height: 100px;
+  /* Increased height for vertical alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 25.5px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.fret-marker-double::before,
+.fret-marker-double::after {
+  content: "";
+  width: 20px;
+  /* Dot size */
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+/* Fretboard Indexes */
+.fretboard-indexes {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 20px;
+}

@@ -1,6 +1,7 @@
 import { Note, noteStrings, ScaleName, ScaleType } from "./fretboard/types.ts";
 import { scalesIntervals } from "./fretboard/scales.ts";
 import { useState } from "react";
+import "./FretboardOptions.css";
 
 interface FretboardOptionsProps {
   rootNote: Note;

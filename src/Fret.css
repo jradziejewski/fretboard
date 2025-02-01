@@ -1,0 +1,65 @@
+/* Fret Styles */
+.fret {
+  width: 100%;
+  height: 40px;
+  position: relative;
+}
+
+/* Fret text (note) */
+.fret-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 14px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  /* Ensure text is above strings and frets */
+}
+
+/* Horizontal string (using ::before) */
+.fret::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: gray;
+  transform: translateY(-50%);
+  z-index: 1;
+  /* Ensure strings are above the fretboard */
+}
+
+/* Vertical fret (using ::after) */
+.fret::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background-color: black;
+  z-index: 2;
+  /* Ensure frets are above the strings */
+}
+
+/* Remove the right border for the last fret */
+.fret:last-child::after {
+  display: none;
+}
+
+/* Root note styling */
+.rootnote {
+  background-color: red;
+  color: white;
+  font-weight: 700;
+}

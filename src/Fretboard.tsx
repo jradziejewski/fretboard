@@ -3,6 +3,7 @@ import { Fret } from "./Fret.tsx"
 import { generateFretboard, standardTuning } from "./fretboard/main.ts";
 import { Note, ScaleName } from "./fretboard/types.ts";
 import { FretboardOptions } from "./FretboardOptions.tsx";
+import "./Fretboard.css";
 
 export function Fretboard() {
   const [rootNote, setRootNote] = useState<Note>("C");

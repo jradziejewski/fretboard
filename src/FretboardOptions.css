@@ -1,0 +1,19 @@
+/* Notes and Scales Buttons */
+.notes-buttons,
+.scales-buttons {
+  margin-top: 16px;
+  gap: 10px;
+}
+
+.notes-buttons button,
+.scales-buttons button {
+  background-color: lightgrey;
+  color: black;
+  height: 20px;
+  min-width: 30px;
+  margin: 5px;
+}
+
+.active-button {
+  background-color: lightpink !important;
+}
