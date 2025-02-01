@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Fret } from "./Fret.tsx"
 import { generateFretboard, standardTuning } from "./fretboard/main.ts";
 import { Note, ScaleName } from "./fretboard/types.ts";
-import { FretboardOptions } from "./FretboardOptions.tsx";
+import { FretboardOptions } from "./scale-explorer"
 import "./Fretboard.css";
 
 export function Fretboard() {
@@ -59,9 +59,10 @@ export function Fretboard() {
 
   return (
     <div>
-      {isMobile ? <div><h1>Mobile view not supported</h1><p>Please use device with larger screen</p></div> :
+      {isMobile ? <div><h1>Mobile view not supported</h1><p>Please rotate your device or use a device with larger screen</p></div> :
         <div>
-          <h1>{rootNote} {activeScale}</h1>
+          <h1>Scale Explorer</h1>
+          <h2 style={{ margin: "50px 0" }}>{rootNote} {activeScale}</h2>
           <div className="fretboard">
             <div className="fretboard-indexes">
               {strings[0].map((_, noteIdx) => (
